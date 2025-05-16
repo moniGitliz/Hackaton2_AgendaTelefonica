@@ -1,10 +1,7 @@
 public class Contacto {
     private String nombre;
     private String apellido;
-<<<<<<< HEAD
     private int numero;
-
-=======
     private int telefono;
 
 
@@ -46,5 +43,4 @@ public class Contacto {
     public void setTelefono(int telefono) {
         this.telefono = telefono;
     }
->>>>>>> main
 }
