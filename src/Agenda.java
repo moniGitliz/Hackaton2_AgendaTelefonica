@@ -39,6 +39,7 @@ public class Agenda {
         this.maximo = maximo;
     }
 
+
     //------------- METODOS ------------- //
 
   
@@ -78,6 +79,22 @@ public class Agenda {
         if (!contactoEncontrado){
             System.out.println("Contacto no encontrado.");
         }
+      
+      public void buscaContacto(String nombreCompleto) {
+        for (Contacto contacto : contacto) {
+            String nombreYApellido = contacto.getNombre() + " " + contacto.getApellido();
+            if (nombreYApellido.equalsIgnoreCase(nombreCompleto.trim())) {
+                System.out.println("Teléfono: " + contacto.getTelefono());
+                return;
+            }
+        }
+        System.out.println("Contacto, no encontrado");
+    }
+
+    public void espacioLibres(){
+        int libres = maximo - contacto.size();
+        System.out.println("quedan" + " " + libres + " " + "espacios libres");
+
     }
 }
 
