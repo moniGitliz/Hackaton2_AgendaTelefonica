@@ -1,17 +1,23 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class Agenda {
     private List<Contacto> contacto = new ArrayList<>();
     private int maximo;
 
-
     //------------- CONSTRUCTORES------------- //
     public Agenda() {
+        this.maximo = 10;
     }
 
-    public Agenda(ArrayList<Contacto> contacto) {
+    public Agenda(int maximo){
+        this.maximo = maximo;
+    }
+
+    public Agenda(ArrayList<Contacto> contacto, int maximo) {
         this.contacto = contacto;
+        this.maximo = maximo;
     }
 
     //------------- GETTERS & SETTERS------------- //
@@ -24,6 +30,7 @@ public class Agenda {
         this.contacto = contacto;
     }
 
+
     public int getMaximo() {
         return maximo;
     }
@@ -33,7 +40,47 @@ public class Agenda {
     }
 
 
-    public void buscaContacto(String nombreCompleto) {
+    //------------- METODOS ------------- //
+
+  
+    public boolean existeContacto(Contacto c) {
+        return contacto.contains(c);
+    }
+    public boolean agendaLlena() {
+        return contacto.size() >= maximo;
+    }
+
+    public void añadirContacto(Contacto c){
+        if (Objects.equals(c.getNombre(), "") || c.getNombre() == null || Objects.equals(c.getApellido(), "") || c.getApellido() == null){
+            System.out.println("No se puede agregar. El nombre o apellido del contacto no está definido.");
+        } else {
+            if (contacto.size() < getMaximo()){
+                if (existeContacto(c)){
+                    System.out.println("No se puede añadir. El contacto ya existe.");
+                } else {
+                    contacto.add(c);
+                    System.out.println("Contacto añadido.");
+                }
+            } else {
+                System.out.println("Tu lista de contactos está llena.");
+            }
+        }
+    }
+
+    public void modificarTelefono(String nombre, String apellido, String nuevoTelefono){
+        boolean contactoEncontrado = false;
+        for (Contacto contactoModificar : contacto){
+            if(contactoModificar.getNombre().equalsIgnoreCase(nombre) && contactoModificar.getApellido().equalsIgnoreCase(apellido)){
+                contactoModificar.setTelefono(Integer.parseInt(nuevoTelefono));
+                System.out.println("Número modificado.");
+                contactoEncontrado = true;
+            }
+        }
+        if (!contactoEncontrado){
+            System.out.println("Contacto no encontrado.");
+        }
+      
+      public void buscaContacto(String nombreCompleto) {
         for (Contacto contacto : contacto) {
             String nombreYApellido = contacto.getNombre() + " " + contacto.getApellido();
             if (nombreYApellido.equalsIgnoreCase(nombreCompleto.trim())) {
@@ -47,6 +94,7 @@ public class Agenda {
     public void espacioLibres(){
         int libres = maximo - contacto.size();
         System.out.println("quedan" + " " + libres + " " + "espacios libres");
+
     }
 }
 
