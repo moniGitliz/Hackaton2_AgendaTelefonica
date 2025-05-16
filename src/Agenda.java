@@ -23,6 +23,14 @@ public class Agenda {
         this.contacto = contacto;
     }
 
+
+    public boolean existeContacto(Contacto c) {
+        return contacto.contains(c);
+    }
+    public boolean agendaLlena() {
+        return contacto.size() >= maximo;
+    }
+
 }
 
 
