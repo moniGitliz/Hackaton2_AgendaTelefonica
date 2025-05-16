@@ -12,7 +12,7 @@ public class Agenda {
 
     //------------- CONSTRUCTORES------------- //
     public Agenda() {
-        this.maximo = 2;
+        this.maximo = 10;
     }
 
     public Agenda(int maximo){
