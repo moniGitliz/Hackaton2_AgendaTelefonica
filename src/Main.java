@@ -7,7 +7,8 @@ public class Main {
         int opcion;
 
         while (true) {
-            System.out.println("1.  Añadir contacto");
+            System.out.println("AGENDA TELEFONICA");
+            System.out.println("1. Añadir contacto");
             System.out.println("2. Ver si existe un contacto");
             System.out.println("3. Listar contactos");
             System.out.println("4. Buscar contacto");
@@ -21,45 +22,44 @@ public class Main {
             opcion = scanner.nextInt();
             scanner.nextLine();
 
+            String nombre, apellido;
+            int telefono;
+
             switch (opcion) {
                 case 1:
-                    System.out.print("Ingrese el nombre: ");
-                    String nombre = scanner.nextLine();
-                    System.out.print("Ingrese el apellido: ");
-                    String apellido = scanner.nextLine();
-                    System.out.print("Ingrese el numero de teléfono: ");
-                    int telefono = scanner.nextInt();
-                    try {
-                        Contacto nuevo = new Contacto(nombre, apellido, telefono);
-                        agenda.añadirContacto(nuevo);
-                    } catch (IllegalArgumentException e) {
-                        System.out.println(e.getMessage());
-                    }
-                    break;
-                case 2:
                     System.out.print("Ingrese el nombre: ");
                     nombre = scanner.nextLine();
                     System.out.print("Ingrese el apellido: ");
                     apellido = scanner.nextLine();
-                    Contacto buscar = new Contacto(nombre, apellido, 0);
-                    System.out.println(agenda.existeContacto(buscar) ? "Existe." : "No existe.");
+                    System.out.print("Ingrese el número de teléfono: ");
+                    telefono = scanner.nextInt();
+                    scanner.nextLine();
+                    agenda.anadirContacto(new Contacto(nombre, apellido, telefono));
+                    break;
+                case 2:
+                    System.out.print("Ingrese el nombre: ");
+                    nombre = scanner.nextLine().trim();;
+                    System.out.print("Ingrese el apellido: ");
+                    apellido = scanner.nextLine().trim();
+                    System.out.println(agenda.existeContacto(new Contacto(nombre, apellido, 0)) ? "Existe." : "No existe.");
                     break;
                 case 3:
                     agenda.listarContactos();
                     break;
                 case 4:
-                    System.out.print(" Ingrese el nombre: ");
-                    nombre = scanner.nextLine();
+                    System.out.print("Ingrese el nombre: ");
+                    nombre = scanner.nextLine().trim();
                     System.out.print("Ingrese el apellido: ");
-                    apellido = scanner.nextLine();
+                    apellido = scanner.nextLine().trim();
                     agenda.buscaContacto(nombre, apellido);
                     break;
                 case 5:
-                    System.out.print(" Ingrese el nombre: ");
-                    nombre = scanner.nextLine();
+                    System.out.print("Ingrese el nombre: ");
+                    nombre = scanner.nextLine().trim();
                     System.out.print("Ingrese el apellido: ");
                     apellido = scanner.nextLine();
-                    agenda.eliminarContacto(new Contacto(nombre, apellido, 0));
+                    boolean eliminado = agenda.eliminarContacto(nombre, apellido);
+                    System.out.println(eliminado ? "Contacto eliminado." : "No se encontró el contacto.");
                     break;
                 case 6:
                     System.out.print("Ingrese el nombre: ");
@@ -68,13 +68,14 @@ public class Main {
                     apellido = scanner.nextLine();
                     System.out.print("Ingrese el nuevo teléfono: ");
                     telefono = scanner.nextInt();
+                    scanner.nextLine();
                     agenda.modificarTelefono(nombre, apellido, telefono);
                     break;
                 case 7:
                     System.out.println(agenda.agendaLlena() ? "La agenda está llena." : "Aún hay espacio.");
                     break;
                 case 8:
-                    System.out.println("Espacios libres: " + agenda.espacioLibre());
+                    agenda.espacioLibres();
                     break;
                 case 9:
                     System.out.println("Saliendo...");
@@ -84,7 +85,5 @@ public class Main {
                     System.out.println("Opción inválida.");
             }
         }
-
-
     }
 }

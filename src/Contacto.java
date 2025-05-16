@@ -42,4 +42,21 @@ public class Contacto {
     public void setTelefono(int telefono) {
         this.telefono = telefono;
     }
+
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Contacto c = (Contacto) obj;
+        return nombre.equalsIgnoreCase(c.nombre) && apellido.equalsIgnoreCase(c.apellido);
+    }
+
+    @Override
+    public int hashCode() {
+        return (nombre.toLowerCase() + apellido.toLowerCase()).hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return nombre + " " + apellido + " - " + telefono;
+    }
 }
