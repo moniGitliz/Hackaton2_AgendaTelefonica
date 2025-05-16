@@ -1,3 +1,5 @@
+package agenda.model;
+
 public class Contacto {
     private String nombre;
     private String apellido;
