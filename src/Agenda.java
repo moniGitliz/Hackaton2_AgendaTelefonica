@@ -30,6 +30,7 @@ public class Agenda {
         this.contacto = contacto;
     }
 
+
     public int getMaximo() {
         return maximo;
     }
@@ -39,6 +40,14 @@ public class Agenda {
     }
 
     //------------- METODOS ------------- //
+
+  
+    public boolean existeContacto(Contacto c) {
+        return contacto.contains(c);
+    }
+    public boolean agendaLlena() {
+        return contacto.size() >= maximo;
+    }
 
     public void añadirContacto(Contacto c){
         if (Objects.equals(c.getNombre(), "") || c.getNombre() == null || Objects.equals(c.getApellido(), "") || c.getApellido() == null){
@@ -55,11 +64,6 @@ public class Agenda {
                 System.out.println("Tu lista de contactos está llena.");
             }
         }
-    }
-
-    //Prueba
-    public boolean existeContacto(Contacto c){
-        return false;
     }
 
     public void modificarTelefono(String nombre, String apellido, String nuevoTelefono){
