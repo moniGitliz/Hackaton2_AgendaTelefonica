@@ -1,9 +1,8 @@
+package agenda.model;
+
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
-import java.util.Objects;
 
 
 public class Agenda {
@@ -15,7 +14,7 @@ public class Agenda {
         this.maximo = 10;
     }
 
-    public Agenda(int maximo){
+    public Agenda(int maximo) {
         this.maximo = maximo;
     }
 
@@ -46,10 +45,11 @@ public class Agenda {
 
     //------------- METODOS ------------- //
 
-  
+
     public boolean existeContacto(Contacto c) {
         return contacto.contains(c);
     }
+
     public boolean agendaLlena() {
         return contacto.size() >= maximo;
     }
@@ -89,13 +89,13 @@ public class Agenda {
         System.out.println("Contacto no encontrado");
     }
 
-    public void espacioLibres(){
+    public void espacioLibres() {
         int libres = maximo - contacto.size();
         System.out.println("quedan" + " " + libres + " " + "espacios libres");
 
     }
-      
-      public void listarContactos() {
+
+    public void listarContactos() {
         if (contacto.size() > 0) {
             for (int i = 0; i < contacto.size() - 1; i++) {
                 for (int j = 0; j < contacto.size() - i - 1; j++) {
@@ -109,7 +109,7 @@ public class Agenda {
                     }
 
                 }
-        }
+            }
             // Imprimir contactos ordenados
             for (Contacto c : contacto) {
                 System.out.println(c.getNombre() + " " + c.getApellido() + " - " + c.getTelefono());
@@ -118,9 +118,8 @@ public class Agenda {
             System.out.println("No has agregado ningun contacto.");
         }
 
-        }
+    }
 
-      
 
     public boolean eliminarContacto(String nombre, String apellido) {
         // 1) Recorrer la lista
@@ -152,7 +151,7 @@ public class Agenda {
         // 3) Llamamos al método eliminarContacto y mostramos resultado
         boolean eliminado = eliminarContacto(nombre, apellido);
         if (eliminado) {
-            System.out.println("✅ Contacto eliminado con éxito.\n");
+            System.out.println("✅ agenda.model.Contacto eliminado con éxito.\n");
         } else {
             System.out.println("⚠️  No se encontró el contacto.\n");
         }
