@@ -1,6 +1,6 @@
+package AgendaGUI;
+
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 public class Agenda {
@@ -26,7 +26,7 @@ public class Agenda {
     }
 
 
-    public void listarContactos() {
+    public String listarContactos() {
         for (int i = 0; i < contacto.size() - 1; i++) {
             for (int j = 0; j < contacto.size() - i - 1; j++) {
                 String nombre1 = contacto.get(j).getNombre();
@@ -39,10 +39,19 @@ public class Agenda {
                 }
             }
         }
+
+        StringBuilder resultado = new StringBuilder();
         // Imprimir contactos ordenados
         for (Contacto c : contacto) {
-            System.out.println(c.getNombre() + " " + c.getApellido() + " - " + c.getTelefono());
+            //System.out.println(c.getNombre() + " " + c.getApellido() + " - " + c.getTelefono());
+            resultado.append(c.getNombre())
+                    .append(" ")
+                    .append(c.getApellido())
+                    .append(" - ")
+                    .append(c.getTelefono())
+                    .append("\n");
         }
+        return resultado.toString();
     }
 
 }

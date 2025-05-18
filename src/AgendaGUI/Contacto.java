@@ -1,3 +1,5 @@
+package AgendaGUI;
+
 public class Contacto {
     private String nombre;
     private String apellido;
